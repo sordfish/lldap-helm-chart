@@ -3,6 +3,16 @@ entries:
   lldap:
   - apiVersion: v2
     appVersion: 0.5.0
+    created: "2024-01-13T21:06:26.892974458Z"
+    description: A Helm chart for lldap
+    digest: 63457965afc10a74915717e8e07cd0aa615de3fbccf0284bd5b239f33caec30c
+    name: lldap
+    type: application
+    urls:
+    - https://github.com/sordfish/lldap-helm-chart/releases/download/lldap-0.1.1/lldap-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.5.0
     created: "2024-01-13T20:26:20.189778738Z"
     description: A Helm chart for lldap
     digest: 9a0f87d621311afff908d79b538259505ba07da007d488973a90d741353e40d5
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/sordfish/lldap-helm-chart/releases/download/lldap-0.1.0/lldap-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-13T20:26:20.189788316Z"
+generated: "2024-01-13T21:06:26.892983355Z"
