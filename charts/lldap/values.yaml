@@ -4,9 +4,7 @@
 
 
 lldap:
-    jwt-secret: lldap-jwt-secret
-    user-pass: lldap-user-pass
-    base-dn: "dc=example,dc=com"
+    basedn: "dc=example,dc=com"
 
 replicaCount: 1
 
@@ -94,16 +92,17 @@ autoscaling:
 
 # Additional volumes on the output Deployment definition.
 volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+# volumes:
+#   - name: lldap-data
+#     persistentVolumeClaim:
+#       claimName: lldap-data
+
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+# volumeMounts:
+#   - name: lldap-data
+#     mountPath: "/data"
 
 nodeSelector: {}
 
@@ -111,8 +110,8 @@ tolerations: []
 
 affinity: {}
 
-Persistance:
-  enable: true
+persistance:
+  enabled: false
   size: 100Mi
   storageClass: local-path
   accessModes:

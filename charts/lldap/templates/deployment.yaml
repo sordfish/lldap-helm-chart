@@ -31,6 +31,23 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
+        - env:
+            - name: UID
+              value: "1001"        
+            - name: GID
+              value: "1001"
+            - name: LLDAP_LDAP_BASE_DN
+              value: {{ .Values.lldap.basedn }}              
+            - name: LLDAP_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-credentials
+                  key: lldap-jwt-secret
+            - name: LLDAP_LDAP_USER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: lldap-credentials
+                  key: lldap-ldap-user-pass
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
