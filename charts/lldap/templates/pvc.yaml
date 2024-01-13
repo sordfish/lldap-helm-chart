@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "lldap.fullname" . }}
+  labels:
+    {{- include "lldap.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ .Values.Persistance.storageClass }}
+  accessModes: {{ .Values.Persistance.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.Persistance.size }}
