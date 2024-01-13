@@ -31,7 +31,11 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - env:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
             - name: UID
               value: "1001"        
             - name: GID
@@ -47,11 +51,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: lldap-credentials
-                  key: lldap-ldap-user-pass
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:v{{ .Values.image.tag | default .Chart.AppVersion }}"
+                  key: lldap-ldap-user-pass          
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: ldap
